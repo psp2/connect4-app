@@ -1,6 +1,6 @@
 from board import Board
 import player
-from game import play_game, game_setup
+from game import play_game, game_setup, run_game
 import sys
 
 def test_board_const():
@@ -75,8 +75,17 @@ def test_invalid_inputs():
     player, board_size = game_setup()
     assert board_size == 6
 
+def test_restart_undo():
+    sys.stdin = open("test_input_files/input_restart_undo.txt")
+    player1 = player.Player("asdfgh", 1)
+    player2 = player.Player("adsdfgh", 2)
+
+    assert play_game(6, [player1, player2]) == 2
 
 def test_whole():
     sys.stdin = open("test_input_files/2p_input.txt")
     player, board_size = game_setup()
     assert play_game(board_size, player) == 1
+
+    sys.stdin = open("test_input_files/2p_input.txt")
+    run_game()
