@@ -67,7 +67,7 @@ class Board:
             row, col = self.history.pop()
             self.history.append((row, col))
 
-        return vertical(player, row, col) or horizontal(player, row, col) or diagonal(player, row, col)
+        return self.vertical(player, row, col) or self.horizontal(player, row, col) or self.diagonal(player, row, col)
 
     def vertical(self, player, row, col):
         # Vertical
@@ -109,7 +109,7 @@ class Board:
 
         return False
 
-    def diagonal(self, player, row):
+    def diagonal(self, player, row, col):
         # Diagonal 1
         count = 0
         cur_row = row
