@@ -1,0 +1,60 @@
+.PlayerIcon {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  height: 73vh;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 3em;
+  margin: auto;
+  border: solid white 1px;
+  border-radius: 20px;
+}
+
+.PlayerInfo {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+.PlayerPicture {
+  width: 16vw;
+  height: 16vw;
+  margin: auto;
+  border: solid white 1px;
+  border-radius: 20px;
+}
+
+.PlayerButtons {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.Player1IconButton {
+  margin: 1vh;
+  width: 10vw;
+  font-size: 0.5em;
+  font-family: "Roboto", sans-serif;
+  border-radius: 20px;
+}
+
+.Player1IconButton:hover {
+  background-color: yellow;
+  color: black;
+  transition-duration: 0.3s;
+}
+
+.Player2IconButton {
+  margin: 1vh;
+  width: 10vw;
+  font-size: 0.5em;
+  font-family: "Roboto", sans-serif;
+  border-radius: 20px;
+}
+
+.Player2IconButton:hover {
+  background-color: red;
+  color: white;
+  transition-duration: 0.3s;
+}

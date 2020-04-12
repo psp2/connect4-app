@@ -1,0 +1,35 @@
+.InvalidMove {
+  position: absolute;
+  margin: auto;
+  top: 20vh;
+  left: 20vw;
+  right: 20vw;
+  z-index: 1;
+  height: 10vw;
+  width: 20vw;
+  background-color: rgb(15, 196, 15);
+  color: white;
+  border-radius: 20px;
+}
+
+.InvalidMessage {
+  font-size: 2em;
+  font-family: "Roboto", sans-serif;
+  margin-top: 2vw;
+}
+
+.InvalidMessageButton {
+  height: 5vh;
+  width: 5vw;
+  border: 1px solid white;
+  border-radius: 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  margin-top: 1vw;
+}
+
+.InvalidMessageButton:hover {
+  background-color: rgb(15, 196, 15);
+  color: white;
+  transition-duration: 0.3s;
+}
