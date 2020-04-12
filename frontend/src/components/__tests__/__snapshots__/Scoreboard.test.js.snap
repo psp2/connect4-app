@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Scoreboard, null values 1`] = `
+<div
+  className="Scoreboard"
+>
+  <div
+    className="ScoreboardTitle"
+  >
+    Scoreboard
+  </div>
+  <hr
+    className="ScoreboardHRLine"
+  />
+  <div
+    className="ScoreboardTable"
+  >
+    <div
+      className="ScoreboardNameColumn"
+    >
+      <div
+        className="ScoreboardName"
+      />
+      <div
+        className="ScoreboardName"
+      />
+    </div>
+    <vr
+      className="ScoreboardVRLine"
+    />
+    <div
+      className="ScoreboardNameColumn"
+    >
+      <div
+        className="ScoreboardName"
+      />
+      <div
+        className="ScoreboardName"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Scoreboard1, renders correctly 1`] = `
+<div
+  className="Scoreboard"
+>
+  <div
+    className="ScoreboardTitle"
+  >
+    Scoreboard
+  </div>
+  <hr
+    className="ScoreboardHRLine"
+  />
+  <div
+    className="ScoreboardTable"
+  >
+    <div
+      className="ScoreboardNameColumn"
+    >
+      <div
+        className="ScoreboardName"
+      >
+        Prashant
+      </div>
+      <div
+        className="ScoreboardName"
+      >
+        Vivek
+      </div>
+    </div>
+    <vr
+      className="ScoreboardVRLine"
+    />
+    <div
+      className="ScoreboardNameColumn"
+    >
+      <div
+        className="ScoreboardName"
+      >
+        3
+      </div>
+      <div
+        className="ScoreboardName"
+      >
+        2
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Scoreboard2, renders correctly 1`] = `
+<div
+  className="Scoreboard"
+>
+  <div
+    className="ScoreboardTitle"
+  >
+    Scoreboard
+  </div>
+  <hr
+    className="ScoreboardHRLine"
+  />
+  <div
+    className="ScoreboardTable"
+  >
+    <div
+      className="ScoreboardNameColumn"
+    >
+      <div
+        className="ScoreboardName"
+      >
+        Vivek
+      </div>
+      <div
+        className="ScoreboardName"
+      >
+        Prashant
+      </div>
+    </div>
+    <vr
+      className="ScoreboardVRLine"
+    />
+    <div
+      className="ScoreboardNameColumn"
+    >
+      <div
+        className="ScoreboardName"
+      >
+        3
+      </div>
+      <div
+        className="ScoreboardName"
+      >
+        2
+      </div>
+    </div>
+  </div>
+</div>
+`;

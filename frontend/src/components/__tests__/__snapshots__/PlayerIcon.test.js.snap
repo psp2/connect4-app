@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`playerIcon, null values 1`] = `
+<div
+  className="PlayerIcon"
+>
+  <div
+    className="PlayerInfo"
+  >
+    <div>
+      Player 
+      :
+    </div>
+    <div />
+  </div>
+  <div
+    className="PlayerPicture"
+  >
+    Insert Picture Here!
+  </div>
+</div>
+`;
+
+exports[`playerIcon1, renders correctly 1`] = `
+<div
+  className="PlayerIcon"
+>
+  <div
+    className="PlayerInfo"
+  >
+    <div>
+      Player 
+      1
+      :
+    </div>
+    <div>
+      Prashant
+    </div>
+  </div>
+  <div
+    className="PlayerPicture"
+  >
+    Insert Picture Here!
+  </div>
+  <div
+    className="PlayerButtons"
+  >
+    <button
+      className="Player1IconButton btn btn-primary"
+      disabled={false}
+      type="button"
+    >
+      UNDO
+    </button>
+    <button
+      className="Player1IconButton btn btn-primary"
+      disabled={false}
+      type="button"
+    >
+      RESTART
+    </button>
+    <button
+      className="Player1IconButton btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      FORFEIT
+    </button>
+  </div>
+</div>
+`;
+
+exports[`playerIcon2, renders correctly 1`] = `
+<div
+  className="PlayerIcon"
+>
+  <div
+    className="PlayerInfo"
+  >
+    <div>
+      Player 
+      2
+      :
+    </div>
+    <div>
+      Vivek
+    </div>
+  </div>
+  <div
+    className="PlayerPicture"
+  >
+    Insert Picture Here!
+  </div>
+  <div
+    className="PlayerButtons"
+  >
+    <button
+      className="Player2IconButton btn btn-primary"
+      disabled={false}
+      type="button"
+    >
+      UNDO
+    </button>
+    <button
+      className="Player2IconButton btn btn-primary"
+      disabled={false}
+      type="button"
+    >
+      RESTART
+    </button>
+    <button
+      className="Player2IconButton btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      FORFEIT
+    </button>
+  </div>
+</div>
+`;

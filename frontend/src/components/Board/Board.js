@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Board.scss";
 
 function Board(props) {
@@ -28,7 +28,8 @@ function Board(props) {
 
   return (
     <div className="Board">
-      {props.gameState.map((row, rowIndex) => displayRow(row, rowIndex))}
+      {props.gameState &&
+        props.gameState.map((row, rowIndex) => displayRow(row, rowIndex))}
     </div>
   );
 }

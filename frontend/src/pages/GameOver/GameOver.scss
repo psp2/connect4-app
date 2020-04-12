@@ -1,0 +1,39 @@
+.GameOver {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.Winner {
+  color: white;
+  font-size: 7em;
+}
+
+.GameOverRow {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.GameOverButtonsArea {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  height: 55vh;
+  width: 30vw;
+}
+
+.GameOverButton {
+  margin: auto;
+  height: 10vh;
+  width: 20vw;
+  font-size: 2em;
+  font-family: "Roboto", sans-serif;
+  border-radius: 20px;
+}
+
+.GameOverButton:hover {
+  background-color: #106eeb;
+}
