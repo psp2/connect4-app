@@ -1,0 +1,45 @@
+.Board {
+  position: absolute;
+  top: 5%;
+  left: 25%;
+  right: 25%;
+  border-radius: 20px;
+  margin: auto;
+  background-color: #106eeb;
+}
+
+.BoardRow {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+}
+
+.WhiteSpace {
+  width: 3vw;
+  height: 3vw;
+  margin: auto;
+  border-radius: 30px;
+  background-color: white;
+}
+
+.WhiteSpace:hover {
+  background-color: rgb(15, 196, 15);
+  transition-duration: 0.4s;
+}
+
+.YellowToken {
+  width: 3vw;
+  height: 3vw;
+  margin: auto;
+  border-radius: 30px;
+  background-color: yellow;
+}
+
+.RedToken {
+  width: 3vw;
+  height: 3vw;
+  margin: auto;
+  border-radius: 30px;
+  background-color: red;
+}
