@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Game.scss";
 import { Redirect } from "react-router-dom";
-import Board from "../../components/Boards/Board";
+import Board from "../../components/Board/Board";
 import PlayerIcon from "../../components/PlayerIcon/PlayerIcon.js";
 import InvalidMove from "../../components/InvalidMove/InvalidMove.js";
 

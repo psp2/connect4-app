@@ -1,0 +1,45 @@
+.Scoreboard {
+  margin: 5vh;
+  height: 55vh;
+  width: 60vw;
+  background-color: #106eeb;
+  border-radius: 20px;
+}
+
+.ScoreboardTitle {
+  color: white;
+  font-size: 5em;
+  font-family: "Roboto", sans-serif;
+  margin: auto;
+}
+
+.ScoreboardTable {
+  display: flex;
+  flex-direction: row;
+}
+
+.ScoreboardNameColumn {
+  display: flex;
+  flex-direction: column;
+  height: 32vh;
+  margin: 5vh;
+  margin: auto;
+}
+
+.ScoreboardName {
+  color: white;
+  font-size: 5em;
+  font-family: "Roboto", sans-serif;
+  margin: auto;
+}
+
+.ScoreboardHRLine {
+  margin-top: 2vh;
+  border: 2px solid white;
+}
+
+.ScoreboardVRLine {
+  margin-top: -1.3vh;
+  height: 41vh;
+  border: 2px solid white;
+}
