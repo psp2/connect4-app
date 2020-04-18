@@ -4,14 +4,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Game from "../Game/Game";
 import GameOver from "../GameOver/GameOver";
-import StartMenu from "../StartMenu/StartMenu";
+import Menus from "../Menus/Menus";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path={"/"} component={StartMenu} />
+          <Route exact path={"/"} component={Menus} />
           <Route exact path={"/game"} component={Game} />
           <Route path={"/gameover"} component={GameOver} />
         </Switch>

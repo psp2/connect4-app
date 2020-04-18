@@ -1,0 +1,124 @@
+.Menu {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+}
+
+.MenuBoard {
+  height: 80vh;
+  width: 80vw;
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  right: 10%;
+  background-color: #106eeb;
+  border-radius: 20px;
+}
+
+.MenuTitle {
+  font-size: 7em;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: row;
+}
+
+.MenuTitleWhite {
+  margin-left: auto;
+  color: white;
+  padding-right: 0.2em;
+}
+
+.MenuTitleRed {
+  margin-right: auto;
+  color: red;
+  padding-left: 0.2em;
+}
+
+.MenuRow {
+  display: flex;
+  flex-direction: row;
+  margin-top: 6vw;
+}
+
+.WhiteButton {
+  border-radius: 50%;
+  height: 13vw;
+  width: 13vw;
+  background-color: white;
+  margin: auto;
+  font-family: "Roboto", sans-serif;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.YellowButton {
+  border-radius: 50%;
+  height: 13vw;
+  width: 13vw;
+  background-color: yellow;
+  margin: auto;
+  font-family: "Roboto", sans-serif;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.GreenButton {
+  border-radius: 50%;
+  height: 13vw;
+  width: 13vw;
+  background-color: rgb(15, 196, 15);
+  margin: auto;
+  font-family: "Roboto", sans-serif;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.RedButton {
+  border-radius: 50%;
+  height: 13vw;
+  width: 13vw;
+  background-color: red;
+  margin: auto;
+  font-family: "Roboto", sans-serif;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.MenuButtonRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.ButtonCaption {
+  margin: auto;
+}
+
+.BackButtonYellow {
+  height: 2vw;
+  width: 7vw;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  border-radius: 30px;
+  background-color: yellow;
+  margin: auto;
+  margin-top: 8vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.BackButtonGreen {
+  height: 2vw;
+  width: 7vw;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  border-radius: 30px;
+  background-color: rgb(15, 196, 15);
+  margin: auto;
+  margin-top: 8vw;
+  display: flex;
+  flex-direction: column;
+}
