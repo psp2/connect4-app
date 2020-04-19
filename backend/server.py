@@ -85,7 +85,7 @@ def start_game():
 
     #Response dictionary
     output = {}
-    output["reponse"] = "Ok"
+    output["response"] = "Ok"
     output["state"] = board.state
     output["size"] = board.rows
     output["id"] = str(id)
@@ -101,7 +101,7 @@ def game_state():
     db, board = decode(id)
     board.print_board()
     output = {}
-    output["reponse"] = "Ok"
+    output["response"] = "Ok"
     output["state"] = board.state
     return output
 
@@ -162,9 +162,39 @@ def undo():
 def restart():
     id = request.args.get('id')
     db, board = decode(id)
-    result = board.reset()
+    board.reset()
+    result = True
     board.print_board()
     output = update(db, id, board, result)
+    return output
+
+@app.route('/quit', methods=['PUT'])
+def quit():
+    id = request.args.get('id')
+    db, board = decode(id)
+    loser = board.players[board.turn]
+    winner = board.players[(board.turn+1)%2]
+
+    increment_scores(db, winner, loser)
+    output = {'game_status' : (board.turn+1)%2+1}
+    return output
+
+@app.route('/delete/board', methods=['DELETE'])
+def delete_board():
+    id = request.args.get('id')
+    db = connect_database()
+    result = db.boards.delete_one({"_id" : ObjectId(id)})
+    output = {}
+    output['response'] = str(result)
+    return output
+
+@app.route('/delete/player', methods=['DELETE'])
+def delete_player():
+    name = request.args.get('name')
+    db = connect_database()
+    result = db.leaderboard.delete_one({"name" : name})
+    output = {}
+    output['response'] = str(result)
     return output
 
 @app.route('/leaderboard', methods=['GET'])
