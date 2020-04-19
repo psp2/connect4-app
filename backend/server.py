@@ -93,6 +93,12 @@ def start_game():
     board.print_board()
     return output
 
+#Launch special game mode
+@app.route('/special', methods=['PUT'])
+def special_game():
+    # TODO: implement when custom game modes are implemented
+    pass
+
 @app.route('/state', methods=['GET'])
 def game_state():
 
