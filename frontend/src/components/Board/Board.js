@@ -2,14 +2,14 @@ import React from "react";
 import "./Board.scss";
 
 function Board(props) {
-  function attemptMove(row, col) {
-    props.makeMove(row, col);
+  function attemptMove(col) {
+    props.makeMove(col);
   }
 
   function displayToken(token, row, col) {
     if (token === 0) {
       return (
-        <div onClick={() => attemptMove(row, col)} className="WhiteSpace"></div>
+        <div onClick={() => attemptMove(col)} className="WhiteSpace"></div>
       );
     } else if (token === 1) {
       return <div className="YellowToken"></div>;

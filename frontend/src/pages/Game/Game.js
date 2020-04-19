@@ -37,6 +37,7 @@ function Game() {
     [0, 0, 0, 0, 0, 0, 0, 0],
   ];
 
+  // Must add API call here
   const [gameState, setGameState] = useState([1, temp_8]);
   // Used to determine if the last move was valid or not
   const [prevPlayer, setPrevPlayer] = useState(1);
@@ -47,7 +48,7 @@ function Game() {
     return <Redirect to="/gameover" />;
   }
 
-  function updateGameState(row, col) {
+  function updateGameState(col) {
     // TODO: Make API Call and set game state accordingly!
 
     // TEMP; FOR WEEK 1 DEMO ONLY

@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Start Menu, renders correctly 1`] = `
+<div>
+  <div
+    className="MenuBoard"
+  >
+    <div
+      className="MenuTitle"
+    >
+      <div
+        className="MenuTitleWhite"
+      >
+        Connect
+      </div>
+      <div
+        className="MenuTitleRed"
+      >
+        4
+      </div>
+    </div>
+    <div
+      className="MenuRow"
+    >
+      <div
+        className="WhiteButton"
+        onClick={[Function]}
+      >
+        <div
+          className="ButtonCaption"
+        >
+          How to Play
+        </div>
+      </div>
+      <div
+        className="YellowButton"
+        onClick={[Function]}
+      >
+        <div
+          className="ButtonCaption"
+        >
+          Single Player
+        </div>
+      </div>
+      <div
+        className="GreenButton"
+        onClick={[Function]}
+      >
+        <div
+          className="ButtonCaption"
+        >
+          Multi-Player
+        </div>
+      </div>
+      <div
+        className="RedButton"
+        onClick={[Function]}
+      >
+        <div
+          className="ButtonCaption"
+        >
+          About the Game
+        </div>
+      </div>
+    </div>
+  </div>
+  <div />
+</div>
+`;

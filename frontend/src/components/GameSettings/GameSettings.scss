@@ -1,0 +1,132 @@
+.SettingsRow {
+  display: flex;
+  flex-direction: row;
+  margin-top: 3vw;
+}
+
+.SettingsHeading {
+  margin-top: 2vw;
+}
+
+.SettingsLine {
+  border: 2px solid black;
+  width: 15vw;
+}
+
+.SettingsButtonRow {
+  display: flex;
+  flex-direction: row;
+  margin-top: 4vw;
+}
+
+.DifficultySelect {
+  border-radius: 50%;
+  height: 20vw;
+  width: 20vw;
+  background-color: white;
+  margin: auto;
+  font-family: "Roboto", sans-serif;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.SettingsValueRow {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-top: 1vh;
+}
+
+.UnselectedValue {
+  width: 2vw;
+  height: 2vw;
+  border-style: solid;
+  border-width: 1px;
+  margin: auto;
+}
+
+.UnselectedValue:hover {
+  background-color: rgb(15, 196, 15);
+  transition-duration: 0.3s;
+}
+
+.SelectedValue {
+  width: 2vw;
+  height: 2vw;
+  border-style: solid;
+  border-width: 1px;
+  margin: auto;
+  background-color: rgb(15, 196, 15);
+}
+
+.NameSelect {
+  border-radius: 50%;
+  height: 20vw;
+  width: 20vw;
+  background-color: white;
+  margin: auto;
+  font-family: "Roboto", sans-serif;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.SizeSelect {
+  border-radius: 50%;
+  height: 20vw;
+  width: 20vw;
+  background-color: red;
+  margin: auto;
+  font-family: "Roboto", sans-serif;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.goOnlineButton {
+  height: 2vw;
+  width: 12vw;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.5em;
+  border-radius: 30px;
+  color: white;
+  background-color: #106eeb;
+  margin: auto;
+  margin-top: 1vh;
+  margin-bottom: 3vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.goOfflineButton {
+  height: 2vw;
+  width: 12vw;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.5em;
+  border-radius: 30px;
+  color: white;
+  background-color: red;
+  margin: auto;
+  margin-top: 1vh;
+  margin-bottom: 3vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nameZone {
+  margin: auto;
+  margin-top: -1vh;
+}
+
+.nameInput {
+  width: 12vw;
+  height: 5vh;
+  margin: auto;
+  margin-bottom: 1vh;
+  border-radius: 20px;
+}
+
+.nameInput:focus {
+  outline-width: 0;
+}

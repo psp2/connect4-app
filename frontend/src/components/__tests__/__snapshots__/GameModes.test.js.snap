@@ -1,0 +1,208 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameModes, multi player 1`] = `
+<div
+  className="MenuBoard"
+>
+  <div
+    className="MenuTitle"
+  >
+    <div
+      className="MenuTitleWhite"
+    >
+      Game
+    </div>
+    <div
+      className="MenuTitleRed"
+    >
+      Modes
+    </div>
+  </div>
+  <div
+    className="MenuRow"
+  >
+    <div
+      className="WhiteButton"
+    >
+      <div
+        className="ButtonCaption"
+        onClick={[Function]}
+      >
+        Connect 4
+      </div>
+    </div>
+    <div
+      className="GreenButton"
+      onClick={[Function]}
+    >
+      <div
+        className="ButtonCaption"
+      >
+        Don't Connect 4
+      </div>
+    </div>
+    <div
+      className="RedButton"
+      onClick={[Function]}
+    >
+      <div
+        className="ButtonCaption"
+      >
+        Mayhem
+      </div>
+    </div>
+  </div>
+  <div
+    className="MenuButtonRow"
+  >
+    <div
+      className="BackButtonGreen"
+      onClick={[Function]}
+    >
+      <div
+        className="ButtonCaption"
+      >
+        Back
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GameModes, renders correctly 1`] = `
+<div
+  className="MenuBoard"
+>
+  <div
+    className="MenuTitle"
+  >
+    <div
+      className="MenuTitleWhite"
+    >
+      Game
+    </div>
+    <div
+      className="MenuTitleRed"
+    >
+      Modes
+    </div>
+  </div>
+  <div
+    className="MenuRow"
+  >
+    <div
+      className="WhiteButton"
+    >
+      <div
+        className="ButtonCaption"
+        onClick={[Function]}
+      >
+        Connect 4
+      </div>
+    </div>
+    <div
+      className="GreenButton"
+      onClick={[Function]}
+    >
+      <div
+        className="ButtonCaption"
+      >
+        Don't Connect 4
+      </div>
+    </div>
+    <div
+      className="RedButton"
+      onClick={[Function]}
+    >
+      <div
+        className="ButtonCaption"
+      >
+        Mayhem
+      </div>
+    </div>
+  </div>
+  <div
+    className="MenuButtonRow"
+  >
+    <div
+      className="BackButtonGreen"
+      onClick={[Function]}
+    >
+      <div
+        className="ButtonCaption"
+      >
+        Back
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GameModes, single player 1`] = `
+<div
+  className="MenuBoard"
+>
+  <div
+    className="MenuTitle"
+  >
+    <div
+      className="MenuTitleWhite"
+    >
+      Game
+    </div>
+    <div
+      className="MenuTitleRed"
+    >
+      Modes
+    </div>
+  </div>
+  <div
+    className="MenuRow"
+  >
+    <div
+      className="WhiteButton"
+    >
+      <div
+        className="ButtonCaption"
+        onClick={[Function]}
+      >
+        Connect 4
+      </div>
+    </div>
+    <div
+      className="YellowButton"
+      onClick={[Function]}
+    >
+      <div
+        className="ButtonCaption"
+      >
+        Don't Connect 4
+      </div>
+    </div>
+    <div
+      className="RedButton"
+      onClick={[Function]}
+    >
+      <div
+        className="ButtonCaption"
+      >
+        Mayhem
+      </div>
+    </div>
+  </div>
+  <div
+    className="MenuButtonRow"
+  >
+    <div
+      className="BackButtonYellow"
+      onClick={[Function]}
+    >
+      <div
+        className="ButtonCaption"
+      >
+        Back
+      </div>
+    </div>
+  </div>
+</div>
+`;
