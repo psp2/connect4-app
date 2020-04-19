@@ -1,13 +1,27 @@
 from color import print_red, print_blue
 class Board:
 
-    def __init__(self, rows, columns):
+    def __init__(self, rows, columns, difficulty=0, players=None):
         self.rows = rows
         self.columns = columns
         self.state = [[0]*columns for row in range(rows)]
         self.history = []
+        self.turn = 0
+        self.difficulty = difficulty
+        self.players = players
 
-    def place_token(self, selected_col, cur_player):
+    #encodes object into a dictionary for database storage
+    def encode(self):
+        output = {}
+        output["size"] = self.columns
+        output["state"] = self.state
+        output["history"] = self.history
+        output["turn"] = self.turn
+        output["difficulty"] = self.difficulty
+        output["players"] = self.players
+        return output
+
+    def place_token(self, selected_col, cur_player=None):
         # Iterate through a column, replace the lowest possible 0 (default) with the Player's token
         if self.invalid_column_selection(selected_col):
             print("Invalid column selection!!!")
@@ -16,6 +30,9 @@ class Board:
         if self.column_full(selected_col):
             print("Current column is full!!!!")
             return False
+
+        if cur_player == None:
+            cur_player = self.turn + 1
 
         row = 1
         while row < self.rows:
@@ -29,6 +46,7 @@ class Board:
             row += 1
 
         self.history.append((row, selected_col))
+        self.turn = (self.turn+1)%2
         return True
 
     def column_full(self, col):
@@ -43,11 +61,13 @@ class Board:
 
         row, col = self.history.pop()
         self.state[row][col] = 0
+        self.turn = (self.turn+1)%2
         return True
 
     def reset(self):
         self.state = [[0]*self.columns for row in range(self.rows)]
         self.history = []
+        self.turn = 0
 
     def validate_win(self, player, row=-1, col=-1):
         """
