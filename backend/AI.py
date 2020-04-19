@@ -40,6 +40,34 @@ def choose_column(board, board_size, difficulty: int) -> int:
     return best_col
 
 
+def choose_worst_column(board: list, board_size: int, difficulty: int) -> int:
+    """
+    Selects column for AI Player (Silly Mode Only)
+
+    Uses the minimax algorithm using difficulty as maximum recursion depth.
+    """
+    col_scores = []
+    worst_col_score = sys.maxsize
+    for col in range(board_size):
+        if board.state[0][col] == 0:
+            row = 1
+            while row < board_size:
+                if row == board_size - 1 and board.state[row][col] == 0:
+                    break
+                elif board.state[row][col] != 0:
+                    row -= 1
+                    break
+                row += 1
+            board.state[row][col] = 2
+            cur_score = minimax(board, board_size, row, col, False, 1, difficulty, -1 * sys.maxsize, sys.maxsize)
+            board.state[row][col] = 0
+            col_scores.append((col, cur_score))
+            if cur_score < worst_col_score:
+                worst_col_score = cur_score
+    worst_col = random.choice([col for col, score in col_scores if score == worst_col_score])
+    return worst_col
+
+
 def necessary_move(board, board_size: int, cur_player: int) -> int:
     for col in range(board_size):
         if board.state[0][col] != 0:

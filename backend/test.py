@@ -65,14 +65,14 @@ def test_AI_play_game():
 
 def test_game_setup():
     sys.stdin = open("test_input_files/input.txt")
-    player, board_size = game_setup()
+    player, board_size, reverse_status = game_setup()
     assert board_size == 6
     assert player[0].name == "AI"
     assert player[1].name == "AI"
 
 def test_invalid_inputs():
     sys.stdin = open("test_input_files/invalid.txt")
-    player, board_size = game_setup()
+    player, board_size, reverse_status = game_setup()
     assert board_size == 6
 
 def test_restart_undo():
@@ -84,7 +84,7 @@ def test_restart_undo():
 
 def test_whole():
     sys.stdin = open("test_input_files/2p_input.txt")
-    player, board_size = game_setup()
+    player, board_size, reverse_status = game_setup()
     assert play_game(board_size, player) == 1
 
     sys.stdin = open("test_input_files/2p_input.txt")

@@ -75,6 +75,25 @@ def game_setup():
             break
         else:
             print('Invalid Board Size')
+    # Decide which mode of Connect4 you wish to play
+    reverse_mode = False
+    mayhem_mode = False
+    while True:
+        try:
+            mode_selection = input('Type C to play normal Connect4, D to play "Dont Connect 4!", and M to play Mayhem! ')
+        except ValueError:
+            print('Invalid Input')
+            continue
+        if mode_selection == 'C' or mode_selection == 'c':
+            break 
+        elif mode_selection == 'D' or mode_selection == 'd':
+            reverse_mode = True 
+            break
+        elif mode_selection == 'M' or mode_selection == 'm':
+            mayhem_mode = True 
+            break
+        else:
+            print('Invalid Input')
 
     if num_players == 1:
         while True:
@@ -85,32 +104,35 @@ def game_setup():
                 continue
             if difficulty < 1 or difficulty > 9:
                 print('Invalid Difficulty Level')
+                continue
             else:
                 difficulty += 2
                 break
+
         player_name = input("Please enter player1's name: ")
-        player1 = Player(player_name, 1)
+        player1 = Player(player_name, 1, reverse=reverse_mode, mayhem=mayhem_mode)
         print_red('You are Player 1.\n', '')
         print_blue('The AI is Player 2.\n', '')
-        player2 = Player("AI", 2, difficulty)
+        player2 = Player("AI", 2, difficulty, reverse_mode, mayhem_mode)
     else:
         player_name = input("Please enter player1's name: ")
-        player1 = Player(player_name, 1)
+        player1 = Player(player_name, 1, reverse=reverse_mode, mayhem=mayhem_mode)
         player_name = input("Please enter player2's name: ")
-        player2 = Player(player_name, 2)
+        player2 = Player(player_name, 2, reverse=reverse_mode, mayhem=mayhem_mode)
 
-    return [player1, player2], board_size
+    return [player1, player2], board_size, reverse_mode
 
 def run_game():
     signal.signal(signal.SIGINT, sigint_handler)
-    player, board_size = game_setup()
+    player, board_size, reverse_status = game_setup()
+
     # Play Game with 1 or 2 players
     winner = play_game(board_size, player)
     # Results
-    if winner == 1:
-        print_red('Player 1 has Won.\n', '')
-    elif winner == 2:
-        print_blue('Player 2 has Won.\n', '')
+    if (reverse_status and winner == 2) or (not reverse_status and winner == 1):
+        print_red(player[0].name + ' has Won.\n', '')
+    elif (reverse_status and winner == 1) or (not reverse_status and winner == 2):
+        print_blue(player[1].name + ' has Won.\n', '')
     else:
         print('Game ends in Tie.\n')
 
