@@ -32,16 +32,24 @@ function GameModes(props) {
           <div className="ButtonCaption">Mayhem</div>
         </div>
       </div>
-      {props.numPlayers === 1 && (
-        <div className="BackButtonYellow" onClick={() => props.resetPlayers(0)}>
-          <div className="ButtonCaption">Go Back</div>
-        </div>
-      )}
-      {props.numPlayers !== 1 && (
-        <div className="BackButtonGreen" onClick={() => props.resetPlayers(0)}>
-          <div className="ButtonCaption">Go Back</div>
-        </div>
-      )}
+      <div className="MenuButtonRow">
+        {props.numPlayers === 1 && (
+          <div
+            className="BackButtonYellow"
+            onClick={() => props.resetPlayers(0)}
+          >
+            <div className="ButtonCaption">Back</div>
+          </div>
+        )}
+        {props.numPlayers !== 1 && (
+          <div
+            className="BackButtonGreen"
+            onClick={() => props.resetPlayers(0)}
+          >
+            <div className="ButtonCaption">Back</div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

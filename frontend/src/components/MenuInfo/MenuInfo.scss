@@ -1,0 +1,68 @@
+.Tutorial {
+  position: absolute;
+  margin: auto;
+  top: 20vh;
+  left: 20vw;
+  right: 20vw;
+  z-index: 1;
+  height: 30vw;
+  width: 30vw;
+  border-radius: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.AboutGame {
+  position: absolute;
+  margin: auto;
+  top: 20vh;
+  left: 20vw;
+  right: 20vw;
+  z-index: 1;
+  height: 30vw;
+  width: 30vw;
+  border-radius: 20px;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+}
+
+.TutorialText {
+  margin: auto;
+  font-size: 1.7em;
+  font-family: "Roboto", sans-serif;
+}
+
+.AboutGameText {
+  margin: auto;
+  color: white;
+  font-size: 1.7em;
+  font-family: "Roboto", sans-serif;
+}
+
+.CloseTutorial {
+  height: 2vw;
+  width: 12vw;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  border-radius: 30px;
+  background-color: rgb(15, 196, 15);
+  margin: auto;
+  margin-bottom: 2vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.CloseAboutGame {
+  height: 2vw;
+  width: 12vw;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  border-radius: 30px;
+  background-color: white;
+  margin: auto;
+  margin-bottom: 2vh;
+  display: flex;
+  flex-direction: column;
+}

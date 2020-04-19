@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuInfo, How to Play 1`] = `
+<div
+  className="Tutorial"
+>
+  <div
+    className="TutorialText"
+  >
+    Here's how to play Connect 4 ... write more once implementation is complete!
+  </div>
+  <div
+    className="CloseTutorial"
+  >
+    <div
+      className="ButtonCaption"
+    >
+      Close
+    </div>
+  </div>
+</div>
+`;
+
+exports[`MenuInfo, null 1`] = `
+<div
+  className="AboutGame"
+>
+  <div
+    className="AboutGameText"
+  >
+    This Connect4 app and implementation was designed by Prashant Pokhriyal and Vivek Sriramineni (based on Python scripts written by Prashant Pokhriyal) for a UIUC CS242 class project.
+ 
+ Connect Four belongs to Hasbro, Inc., and we do not aim to profit off of this game. 
+
+ With that being said, sit back and enjoy the game!
+  </div>
+  <div
+    className="CloseAboutGame"
+  >
+    <div
+      className="ButtonCaption"
+    >
+      Close
+    </div>
+  </div>
+</div>
+`;
+
+exports[`MenuInfo, renders correctly 1`] = `
+<div
+  className="AboutGame"
+>
+  <div
+    className="AboutGameText"
+  >
+    This Connect4 app and implementation was designed by Prashant Pokhriyal and Vivek Sriramineni (based on Python scripts written by Prashant Pokhriyal) for a UIUC CS242 class project.
+ 
+ Connect Four belongs to Hasbro, Inc., and we do not aim to profit off of this game. 
+
+ With that being said, sit back and enjoy the game!
+  </div>
+  <div
+    className="CloseAboutGame"
+  >
+    <div
+      className="ButtonCaption"
+    >
+      Close
+    </div>
+  </div>
+</div>
+`;

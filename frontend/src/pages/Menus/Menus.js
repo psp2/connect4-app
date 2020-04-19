@@ -12,8 +12,9 @@ function Menus() {
   const [gameRedirect, setGameRedirect] = useState(false);
   const [numPlayers, setNumPlayers] = useState(0);
   const [gameMode, setGameMode] = useState(0);
-  const [difficulty, setDifficulty] = useState(0);
-  const [name, setName] = useState("");
+  const [difficulty, setDifficulty] = useState(null);
+  const [name1, setName1] = useState(null);
+  const [name2, setName2] = useState(null);
   const [boardSize, setBoardSize] = useState(0);
 
   if (gameRedirect) {
@@ -28,12 +29,21 @@ function Menus() {
     setGameMode(mode);
   }
 
-  function selectGameSettings(diff, name, size) {
+  function submitGameSettings(diff, name1, name2, size) {
     setDifficulty(diff);
-    setName(name);
+    setName1(name1);
+    setName2(name2);
     setBoardSize(size);
     // Do stuff with API here!
+    // Submit AI diff, name1, name 2, boardSize, gameMode
     setGameRedirect(true);
+  }
+
+  function resetGameSettings() {
+    setDifficulty(null);
+    setName1(null);
+    setName2(null);
+    setBoardSize(null);
   }
 
   return (
@@ -53,7 +63,8 @@ function Menus() {
           numPlayers={numPlayers}
           resetPlayers={selectPlayerNumber}
           resetGameMode={selectGameMode}
-          submitSettings={selectGameSettings}
+          submitSettings={submitGameSettings}
+          resetSettings={resetGameSettings}
         />
       )}
     </div>
