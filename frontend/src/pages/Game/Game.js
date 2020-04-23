@@ -39,7 +39,6 @@ function Game(props) {
 
   // Must add API call here
   const [gameState, setGameState] = useState([1, temp_6]);
-  const [gameId, setGameId] = useState("5ea1127db7d696391160dd22")
   // Used to determine if the last move was valid or not
   const [prevPlayer, setPrevPlayer] = useState(1);
   const [lastMoveValid, setLastMoveValid] = useState(true);
@@ -79,7 +78,7 @@ function Game(props) {
     ];
     // setGameState(api_res);
     var base_url = 'http://127.0.0.1:5000/place_token?id='
-    const url = base_url.concat(gameId, '&col=',col)
+    const url = base_url.concat(props.gameId, '&col=',col)
     fetch(url, {method: "post"})
     .then(response => response.json())
     .then(data => {
@@ -110,7 +109,7 @@ function Game(props) {
             playerNumber={1}
             playerName="Prashant"
             endGame={setEndGame}
-            gameId={gameId}
+            gameId={props.gameId}
             setGameState={setGameState}
             prevPlayer={prevPlayer}
           />
@@ -127,7 +126,7 @@ function Game(props) {
             playerNumber={2}
             playerName="Vivek"
             endGame={setEndGame}
-            gameId={gameId}
+            gameId={props.gameId}
             setGameState={setGameState}
             prevPlayer={prevPlayer}
           />

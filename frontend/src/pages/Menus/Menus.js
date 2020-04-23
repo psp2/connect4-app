@@ -8,7 +8,7 @@ import StartMenu from "../../components/StartMenu/StartMenu";
 import GameModes from "../../components/GameModes/GameModes";
 import GameSettings from "../../components/GameSettings/GameSettings";
 
-function Menus() {
+function Menus(props) {
   const [gameRedirect, setGameRedirect] = useState(false);
   const [numPlayers, setNumPlayers] = useState(0);
   const [gameMode, setGameMode] = useState(0);
@@ -36,6 +36,22 @@ function Menus() {
     setBoardSize(size);
     // Do stuff with API here!
     // Submit AI diff, name1, name 2, boardSize, gameMode
+
+    if(diff === null) {
+      diff = 6
+    }
+
+    const base_url = 'http://127.0.0.1:5000/start?size='
+    const url = base_url.concat(size, '&difficulty=', diff, '&p1=', name1, '&p2=', name2)
+    fetch(url, {method: 'put'})
+    .then(response => response.json())
+    .then(data => {
+      props.setGameId(data['id'])
+      props.setGameState([1, data['state']])
+      console.log(data)
+    })
+    .catch(err => console.error(err))
+
     setGameRedirect(true);
   }
 
