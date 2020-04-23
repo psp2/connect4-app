@@ -1,11 +1,12 @@
 from flask import Flask, request
+from flask_cors import CORS
 from board import Board
 from pymongo import MongoClient
 from color import print_red, print_blue
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
-
+CORS(app)
 
 def connect_database():
     client = MongoClient(port=27017)
@@ -38,6 +39,7 @@ def update(db, id, board, result):
     output = {}
     output['response'] = result
     output['state'] = board.state
+    output['turn'] = board.turn + 1
     return output
 
 '''
@@ -148,6 +150,7 @@ def place_token():
 
     output = update(db, id, board, result)
     output['game_status'] = game_status
+    output['prev'] = player
     return output
 
 @app.route('/undo', methods=['POST'])
