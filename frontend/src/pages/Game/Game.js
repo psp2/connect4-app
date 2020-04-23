@@ -5,7 +5,7 @@ import Board from "../../components/Board/Board";
 import PlayerIcon from "../../components/PlayerIcon/PlayerIcon.js";
 import InvalidMove from "../../components/InvalidMove/InvalidMove.js";
 
-function Game() {
+function Game(props) {
   // TEMP; FOR DEMO DISPLAY
   const temp_6 = [
     [0, 0, 0, 0, 0, 0],
@@ -38,11 +38,23 @@ function Game() {
   ];
 
   // Must add API call here
-  const [gameState, setGameState] = useState([1, temp_8]);
+  const [gameState, setGameState] = useState([1, temp_6]);
+  const [gameId, setGameId] = useState("5ea1127db7d696391160dd22")
   // Used to determine if the last move was valid or not
   const [prevPlayer, setPrevPlayer] = useState(1);
   const [lastMoveValid, setLastMoveValid] = useState(true);
   const [endGame, setEndGame] = useState(false);
+
+  // const base_url = 'http://127.0.0.1:5000/start?size='
+  // const url = base_url.concat(6, '&difficulty=', 5, '&p1=', 'Test1', '&p2=', 'Test2')
+  // fetch(url, {method: 'put'})
+  // .then(response => response.json())
+  // .then(data => {
+  //   setGameId(data['id'])
+  //   setGameState([1, data['state']])
+  //   console.log(data)
+  // })
+  // .catch(err => console.error(err))
 
   if (endGame) {
     return <Redirect to="/gameover" />;
@@ -65,18 +77,29 @@ function Game() {
         [0, 2, 1, 2, 2, 1, 0, 0],
       ],
     ];
-    setGameState(api_res);
+    // setGameState(api_res);
+    var base_url = 'http://127.0.0.1:5000/place_token?id='
+    const url = base_url.concat(gameId, '&col=',col)
+    fetch(url, {method: "post"})
+    .then(response => response.json())
+    .then(data => {
+      setGameState([data['turn'], data['state']])
+      console.log(data)
+      if (data['game_status'] !== 0) {
+        setEndGame(true);
+      }
+      // If the player hasn't changed between moves, the move was invalid.
+      if (data['response'] === false) {
+        setLastMoveValid(false);
+      } else {
+        setPrevPlayer(data['prev']);
+        setLastMoveValid(true);
+      }
+    })
+    .catch(err => console.error(err))
+
     // If the returned board is empty, the game is over.
-    if (api_res[1] === []) {
-      setEndGame(true);
-    }
-    // If the player hasn't changed between moves, the move was invalid.
-    if (api_res[0] === prevPlayer) {
-      setLastMoveValid(false);
-    } else {
-      setPrevPlayer(api_res[0]);
-      setLastMoveValid(true);
-    }
+
   }
 
   return (
@@ -87,6 +110,9 @@ function Game() {
             playerNumber={1}
             playerName="Prashant"
             endGame={setEndGame}
+            gameId={gameId}
+            setGameState={setGameState}
+            prevPlayer={prevPlayer}
           />
         </div>
         <div>
@@ -101,6 +127,9 @@ function Game() {
             playerNumber={2}
             playerName="Vivek"
             endGame={setEndGame}
+            gameId={gameId}
+            setGameState={setGameState}
+            prevPlayer={prevPlayer}
           />
         </div>
       </div>
