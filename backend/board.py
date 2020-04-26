@@ -35,7 +35,7 @@ class Board:
         #game mode is mayhem
         if(self.mode == 3):
             rand_num = random.randint(1, 1000)
-            selected_col = rand_num % selected_col
+            selected_col = rand_num % (selected_col + 1)
 
         # Iterate through a column, replace the lowest possible 0 (default) with the Player's token
         if self.invalid_column_selection(selected_col):

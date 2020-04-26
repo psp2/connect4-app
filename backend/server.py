@@ -28,6 +28,7 @@ def decode(id):
     board.turn = record["turn"]
     board.difficulty = record["difficulty"]
     board.players = record["players"]
+    board.mode = record["mode"]
     return db, board
 
 '''
@@ -101,9 +102,11 @@ def ai_move(db, id, board):
     player = board.turn + 1
 
     if board.mode != 2:
+        print_red("AI: choosing move\n", '')
         col = choose_column(board, board.rows, board.difficulty)
     else:
-        col = choose_worst_column(board, boards.rows, board.difficulty)
+        print_red("AI: Choosing worst column\n", '')
+        col = choose_worst_column(board, board.rows, board.difficulty)
 
     result = board.place_token(col)
 
