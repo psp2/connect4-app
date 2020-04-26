@@ -107,4 +107,4 @@ function Menus(props) {
   );
 }
 
-export default compose(withRouter)(Menus);
+export default Menus;

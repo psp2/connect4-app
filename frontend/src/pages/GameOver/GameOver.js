@@ -16,12 +16,10 @@ function GameOver(props) {
   const [menuRedirect, setMenuRedirect] = useState(false);
 
   useEffect(() => {
-    var url = 'http://127.0.0.1:5000/leaderboard';
-    fetch(url, {method: 'get'})
-    .then(response => response.json())
-    .then(data => {
+    if (props.testJson != null) {
+      let data = props.testJson;
       let i = data.leaderboard.length;
-      let player1 = find_player(props.name1, data.leaderboard);//data.leaderboard[i-2];
+      let player1 = find_player(props.name1, data.leaderboard);
       let player2 = find_player(props.name2, data.leaderboard);
       setPlayer1Wins(player1.wins);
       setPlayer1Losses(player1.losses);
@@ -29,7 +27,23 @@ function GameOver(props) {
       setPlayer2Wins(player2.wins);
       setPlayer2Losses(player2.losses);
       setPlayer2Ties(player2.ties);
-    })
+    }
+    else {
+      var url = 'http://127.0.0.1:5000/leaderboard';
+      fetch(url, {method: 'get'})
+      .then(response => response.json())
+      .then(data => {
+        let i = data.leaderboard.length;
+        let player1 = find_player(props.name1, data.leaderboard);
+        let player2 = find_player(props.name2, data.leaderboard);
+        setPlayer1Wins(player1.wins);
+        setPlayer1Losses(player1.losses);
+        setPlayer1Ties(player1.ties);
+        setPlayer2Wins(player2.wins);
+        setPlayer2Losses(player2.losses);
+        setPlayer2Ties(player2.ties);
+      })
+    }
   }, []);
 
   function rematch() {
