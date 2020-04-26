@@ -3,6 +3,7 @@
 exports[`game page, renders properly 1`] = `
 <div
   className="Game"
+  onClick={[Function]}
 >
   <div
     className="GameZone"
