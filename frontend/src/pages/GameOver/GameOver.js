@@ -17,8 +17,8 @@ function GameOver(props) {
 
   useEffect(() => {
     var url = 'http://127.0.0.1:5000/leaderboard';
-    fetch(url, {method: 'get'}) 
-    .then(response => response.json()) 
+    fetch(url, {method: 'get'})
+    .then(response => response.json())
     .then(data => {
       let i = data.leaderboard.length;
       let player1 = data.leaderboard[i-2];
@@ -43,6 +43,15 @@ function GameOver(props) {
   if (rematchRedirect) {
     // Will need to add more once API implemented, multiple games enabled
     // Will also need to wait for other player to "accept" if in multi-player mode
+    var base_url = 'http://127.0.0.1:5000/restart?id='
+    var url = base_url.concat(props.gameId)
+    fetch(url, {method: 'put'})
+    .then(response => response.json())
+    .then(data => {
+      //setGameState([data['turn'], data['state']])
+      console.log(data)
+    })
+
     return <Redirect to="/game" />;
   }
 

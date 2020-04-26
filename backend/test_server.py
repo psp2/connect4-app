@@ -126,7 +126,7 @@ def test_quit_leaderboard(client):
     assert leaderboard_get("Test1", lead_data["leaderboard"]) != None
     assert leaderboard_get("Test2", lead_data["leaderboard"]) != None
 
-    path = '/quit?id='+id
+    path = '/quit?id='+id+'&turn=1'
     rv = client.put(path)
     quit_data = rv.get_json()
     assert quit_data['game_status'] == 2

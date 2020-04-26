@@ -97,6 +97,22 @@ def validate_state(db, player, board):
 
     return game_status
 
+def ai_move(db, id, board):
+    player = board.turn + 1
+
+    if board.mode != 2:
+        col = choose_column(board, board.rows, board.difficulty)
+    else:
+        col = choose_worst_column(board, boards.rows, board.difficulty)
+
+    result = board.place_token(col)
+
+    game_status = validate_state(db, player, board)
+    output = update(db, id, board, result)
+    output['game_status'] = game_status
+    board.print_board()
+    return output
+
 @app.route('/')
 def hello_world():
     return 'Server is running'
@@ -110,6 +126,9 @@ def start_game():
     p1 = request.args.get('p1')
     p2 = request.args.get('p2')
     mode = request.args.get('mode')
+
+    if mode == 'null':
+        mode = 1
 
     #initialize game and insert into collection
     db = connect_database()
@@ -144,6 +163,7 @@ def game_state():
     output = {}
     output["response"] = "Ok"
     output["state"] = board.state
+    output['turn'] = board.turn + 1
     return output
 
 @app.route('/place_token', methods=['POST'])
@@ -163,10 +183,15 @@ def place_token():
 
     game_status = validate_state(db, player, board)
 
-    output = update(db, id, board, result)
-    output['game_status'] = game_status
-    output['prev'] = player
-    return output
+    if game_status != 0 or board.players[1] != 'AI':
+        output = update(db, id, board, result)
+        output['game_status'] = game_status
+        output['prev'] = player
+        return output
+
+    else:
+        return ai_move(db, id, board)
+
 
 @app.route('/undo', methods=['POST'])
 def undo():
@@ -186,20 +211,7 @@ def undo():
 def ai():
     id = request.args.get('id')
     db, board = decode(id)
-    player = board.turn + 1
-
-    if board.mode != 2:
-        col = choose_column(board, board.rows, board.difficulty)
-    else:
-        col choose_worst_column(board, boards.rows, board.difficulty)
-
-    result = board.place_token(col)
-
-    game_status = validate_state(db, player, board)
-    output = update(db, id, board, result)
-    output['game_status'] = game_status
-    board.print_board()
-    return output
+    return ai_move(db, id, board)
 
 @app.route('/restart', methods=['PUT'])
 def restart():
@@ -214,12 +226,13 @@ def restart():
 @app.route('/quit', methods=['PUT'])
 def quit():
     id = request.args.get('id')
+    turn = int(request.args.get('turn'))
     db, board = decode(id)
-    loser = board.players[board.turn]
-    winner = board.players[(board.turn+1)%2]
+    loser = board.players[turn-1]
+    winner = board.players[turn%2]
 
     increment_scores(db, winner, loser)
-    output = {'game_status' : (board.turn+1)%2+1}
+    output = {'game_status' : turn%2+1}
     return output
 
 @app.route('/delete/board', methods=['DELETE'])

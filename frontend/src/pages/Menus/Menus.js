@@ -29,6 +29,15 @@ function Menus(props) {
 
   function submitGameSettings(diff, name1, name2, size, gameCode) {
     setDifficulty(diff);
+
+    if(name1 === null) {
+      name1 = "Player"
+    }
+
+    if(name2 === null) {
+      name2 = "AI"
+    }
+
     props.setName1(name1);
     props.setName2(name2);
     setBoardSize(size);
@@ -44,7 +53,7 @@ function Menus(props) {
     }
 
     const base_url = 'http://127.0.0.1:5000/start?size='
-    const url = base_url.concat(size, '&difficulty=', diff, '&p1=', name1, '&p2=', name2)
+    const url = base_url.concat(size, '&difficulty=', diff, '&p1=', name1, '&p2=', name2, '&mode=', gameMode)
     fetch(url, {method: 'put'})
     .then(response => response.json())
     .then(data => {

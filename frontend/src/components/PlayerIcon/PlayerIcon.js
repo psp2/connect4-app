@@ -3,7 +3,14 @@ import { Button } from "react-bootstrap";
 import "./PlayerIcon.scss";
 
 function PlayerIcon(props) {
-  function forfeitGame() {
+  function forfeitGame(turn) {
+    var base_url = 'http://127.0.0.1:5000/quit?id='
+    var url = base_url.concat(props.gameId, '&turn=', turn)
+    fetch(url, {method: 'put'})
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+    })
     props.endGame(true);
   }
 
@@ -30,7 +37,7 @@ function PlayerIcon(props) {
         <div className="PlayerButtons">
           <Button className="Player1IconButton" onClick={props.undo}>UNDO</Button>
           <Button className="Player1IconButton" onClick={restart}>RESTART</Button>
-          <Button onClick={forfeitGame} className="Player1IconButton">
+          <Button onClick={() => forfeitGame(1)} className="Player1IconButton">
             FORFEIT
           </Button>
         </div>
@@ -39,7 +46,7 @@ function PlayerIcon(props) {
         <div className="PlayerButtons">
           <Button className="Player2IconButton" onClick={props.undo}>UNDO</Button>
           <Button className="Player2IconButton" onClick={restart}>RESTART</Button>
-          <Button onClick={forfeitGame} className="Player2IconButton">
+          <Button onClick={() => forfeitGame(2)} className="Player2IconButton">
             FORFEIT
           </Button>
         </div>

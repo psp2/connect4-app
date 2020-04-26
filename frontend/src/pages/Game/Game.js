@@ -12,7 +12,7 @@ function Game(props) {
   const [prevPlayer, setPrevPlayer] = useState(1);
   const [lastMoveValid, setLastMoveValid] = useState(true);
   const [endGame, setEndGame] = useState(false);
-  const [endGameRedirect, setEndGameRedirect] = useState(false); 
+  const [endGameRedirect, setEndGameRedirect] = useState(false);
 
   if (endGameRedirect) {
     return <Redirect to="/gameover" />;
@@ -51,6 +51,17 @@ function Game(props) {
     })
   }
 
+  function state() {
+    var base_url = 'http://127.0.0.1:5000/state?id='
+    var url = base_url.concat(props.gameId)
+    fetch(url, {method: 'get'})
+    .then(response => response.json())
+    .then(data => {
+      setGameState([data['turn'], data['state']])
+      console.log(data)
+    })
+  }
+
   return (
     <div className="Game">
       <div className="GameZone">
@@ -71,8 +82,8 @@ function Game(props) {
             gameState={gameState[1]}
             makeMove={updateGameState}
           />
-          {gameState[1] == null && <div className="GameStartbutton" onClick={undo}>
-            START 
+          {gameState[1] == null && <div className="GameStartbutton" onClick={state}>
+            START
             </div>}
           {endGame && <div className="GameStartbutton">
             GAME OVER!
