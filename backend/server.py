@@ -4,6 +4,7 @@ from board import Board
 from pymongo import MongoClient
 from color import print_red, print_blue
 from bson.objectid import ObjectId
+from AI import choose_column, choose_worst_column
 
 app = Flask(__name__)
 CORS(app)
@@ -65,6 +66,37 @@ def increment_scores(db, winner, loser, tied=False):
         db.leaderboard.update_one({"name": winner}, {"$inc": {"wins": 1}})
         db.leaderboard.update_one({"name": loser}, {"$inc": {"losses": 1}})
 
+'''
+Validate on the state of the board
+'''
+def validate_state(db, player, board):
+    game_won = board.validate_win(player)
+    tied = all(board.state[0])
+
+    '''
+    0: Game ongoing
+    1: Player 1 Won
+    2: Player 2 Won
+    3: Tied game
+    '''
+    game_status = 0
+    if game_won:
+        game_status = player
+        winner = board.players[player-1]
+        loser = board.players[player%2]
+
+        #Check if it is silly mode or not
+        if board.mode != 2:
+            increment_scores(db, winner, loser)
+        else:
+            increment_scores(db, loser, winner)
+            game_status = player%2 + 1
+    elif tied:
+        game_status = 3
+        increment_scores(db, board.players[0], board.players[1], True)
+
+    return game_status
+
 @app.route('/')
 def hello_world():
     return 'Server is running'
@@ -77,10 +109,11 @@ def start_game():
     difficulty = int(request.args.get('difficulty')) + 2
     p1 = request.args.get('p1')
     p2 = request.args.get('p2')
+    mode = request.args.get('mode')
 
     #initialize game and insert into collection
     db = connect_database()
-    board = Board(size, size, difficulty, [p1, p2])
+    board = Board(size, size, difficulty, [p1, p2], int(mode))
     to_insert = board.encode()
     id =  db.boards.insert_one(to_insert).inserted_id
     insert_leaderboard(p1, p2)
@@ -128,25 +161,7 @@ def place_token():
     else:
         print_red("No change\n", '')
 
-
-    game_won = board.validate_win(player)
-    tied = all(board.state[0])
-
-    '''
-    0: Game ongoing
-    1: Player 1 Won
-    2: Player 2 Won
-    3: Tied game
-    '''
-    game_status = 0
-    if game_won:
-        game_status = player
-        winner = board.players[player-1]
-        loser = board.players[player%2]
-        increment_scores(db, winner, loser)
-    elif tied:
-        game_status = 3
-        increment_scores(db, board.players[0], board.players[1], True)
+    game_status = validate_state(db, player, board)
 
     output = update(db, id, board, result)
     output['game_status'] = game_status
@@ -165,6 +180,25 @@ def undo():
         print_red("No change\n", '')
 
     output = update(db, id, board, result)
+    return output
+
+@app.route('/ai', methods=['POST'])
+def ai():
+    id = request.args.get('id')
+    db, board = decode(id)
+    player = board.turn + 1
+
+    if board.mode != 2:
+        col = choose_column(board, board.rows, board.difficulty)
+    else:
+        col choose_worst_column(board, boards.rows, board.difficulty)
+
+    result = board.place_token(col)
+
+    game_status = validate_state(db, player, board)
+    output = update(db, id, board, result)
+    output['game_status'] = game_status
+    board.print_board()
     return output
 
 @app.route('/restart', methods=['PUT'])

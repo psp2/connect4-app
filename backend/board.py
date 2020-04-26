@@ -1,7 +1,8 @@
 from color import print_red, print_blue
+import random
 class Board:
 
-    def __init__(self, rows, columns, difficulty=0, players=None):
+    def __init__(self, rows, columns, difficulty=0, players=None, mode=1):
         self.rows = rows
         self.columns = columns
         self.state = [[0]*columns for row in range(rows)]
@@ -9,7 +10,14 @@ class Board:
         self.turn = 0
         self.difficulty = difficulty
         self.players = players
+        self.mode = mode
 
+    '''
+    Modes
+    1: Normal game
+    2: Silly game
+    3: Mayhem
+    '''
     #encodes object into a dictionary for database storage
     def encode(self):
         output = {}
@@ -19,9 +27,16 @@ class Board:
         output["turn"] = self.turn
         output["difficulty"] = self.difficulty
         output["players"] = self.players
+        output["mode"] = self.mode
         return output
 
     def place_token(self, selected_col, cur_player=None):
+
+        #game mode is mayhem
+        if(self.mode == 3):
+            rand_num = random.randint(1, 1000)
+            selected_col = rand_num % selected_col
+
         # Iterate through a column, replace the lowest possible 0 (default) with the Player's token
         if self.invalid_column_selection(selected_col):
             print("Invalid column selection!!!")

@@ -32,7 +32,7 @@ def test_server_running(client):
     assert b'Server is running' in rv.data
 
 def start_game(client):
-    rv = client.put('/start?size=6&difficulty=1&p1=Test1&p2=Test2')
+    rv = client.put('/start?size=6&difficulty=1&p1=Test1&p2=Test2&mode=1')
     json_data = rv.get_json()
     assert json_data['size'] == 6
     assert json_data['response'] == 'Ok'
