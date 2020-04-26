@@ -32,6 +32,41 @@ exports[`Scoreboard, null values 1`] = `
       className="ScoreboardNameColumn"
     >
       <div
+        className="ScoreboardCategories"
+      >
+        W
+      </div>
+      <div
+        className="ScoreboardName"
+      />
+      <div
+        className="ScoreboardName"
+      />
+    </div>
+    <div
+      className="ScoreboardNameColumn"
+    >
+      <div
+        className="ScoreboardCategories"
+      >
+        T
+      </div>
+      <div
+        className="ScoreboardName"
+      />
+      <div
+        className="ScoreboardName"
+      />
+    </div>
+    <div
+      className="ScoreboardNameColumn"
+    >
+      <div
+        className="ScoreboardCategories"
+      >
+        L
+      </div>
+      <div
         className="ScoreboardName"
       />
       <div
@@ -78,15 +113,46 @@ exports[`Scoreboard1, renders correctly 1`] = `
       className="ScoreboardNameColumn"
     >
       <div
-        className="ScoreboardName"
+        className="ScoreboardCategories"
       >
-        3
+        W
       </div>
       <div
         className="ScoreboardName"
+      />
+      <div
+        className="ScoreboardName"
+      />
+    </div>
+    <div
+      className="ScoreboardNameColumn"
+    >
+      <div
+        className="ScoreboardCategories"
       >
-        2
+        T
       </div>
+      <div
+        className="ScoreboardName"
+      />
+      <div
+        className="ScoreboardName"
+      />
+    </div>
+    <div
+      className="ScoreboardNameColumn"
+    >
+      <div
+        className="ScoreboardCategories"
+      >
+        L
+      </div>
+      <div
+        className="ScoreboardName"
+      />
+      <div
+        className="ScoreboardName"
+      />
     </div>
   </div>
 </div>
@@ -128,15 +194,46 @@ exports[`Scoreboard2, renders correctly 1`] = `
       className="ScoreboardNameColumn"
     >
       <div
-        className="ScoreboardName"
+        className="ScoreboardCategories"
       >
-        3
+        W
       </div>
       <div
         className="ScoreboardName"
+      />
+      <div
+        className="ScoreboardName"
+      />
+    </div>
+    <div
+      className="ScoreboardNameColumn"
+    >
+      <div
+        className="ScoreboardCategories"
       >
-        2
+        T
       </div>
+      <div
+        className="ScoreboardName"
+      />
+      <div
+        className="ScoreboardName"
+      />
+    </div>
+    <div
+      className="ScoreboardNameColumn"
+    >
+      <div
+        className="ScoreboardCategories"
+      >
+        L
+      </div>
+      <div
+        className="ScoreboardName"
+      />
+      <div
+        className="ScoreboardName"
+      />
     </div>
   </div>
 </div>

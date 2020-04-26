@@ -21,8 +21,8 @@ function GameOver(props) {
     .then(response => response.json())
     .then(data => {
       let i = data.leaderboard.length;
-      let player1 = data.leaderboard[i-2];
-      let player2 = data.leaderboard[i-1];
+      let player1 = find_player(props.name1, data.leaderboard);//data.leaderboard[i-2];
+      let player2 = find_player(props.name2, data.leaderboard);
       setPlayer1Wins(player1.wins);
       setPlayer1Losses(player1.losses);
       setPlayer1Ties(player1.ties);
@@ -36,19 +36,28 @@ function GameOver(props) {
     setRematchRedirect(true);
   }
 
+  function find_player(name, data) {
+    for (var i = 0; i < data.length; i++) {
+      var object = data[i];
+      console.log(object.name)
+      if (object.name === name) {
+        return object;
+      }
+    }
+    //Name does not exist
+    return {wins: -1, losses: -1, ties: -1};
+  }
+
   function returnToMenu() {
     setMenuRedirect(true);
   }
 
   if (rematchRedirect) {
-    // Will need to add more once API implemented, multiple games enabled
-    // Will also need to wait for other player to "accept" if in multi-player mode
     var base_url = 'http://127.0.0.1:5000/restart?id='
     var url = base_url.concat(props.gameId)
     fetch(url, {method: 'put'})
     .then(response => response.json())
     .then(data => {
-      //setGameState([data['turn'], data['state']])
       console.log(data)
     })
 

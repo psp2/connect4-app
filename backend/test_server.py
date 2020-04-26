@@ -181,3 +181,14 @@ def test_win_condition(client):
     assert winner["losses"] == 0
 
     delete_data(client, id)
+
+def test_ai_moves(client):
+
+    id = start_game(client)
+
+    path = '/ai?id='+id
+    rv = client.post(path)
+    ai_data = rv.get_json()
+    assert ai_data['response'] == True
+
+    delete_data(client, id)

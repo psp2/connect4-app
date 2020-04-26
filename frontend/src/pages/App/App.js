@@ -16,7 +16,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path={"/"} render={() => <Menus setGameId={setGameId} gameId={gameId} setName1={setName1} setName2={setName2} />} />
-          <Route exact path={"/game"} render={() => <Game setGameId={setGameId} gameId={gameId} name1={name1} name2={name2} />} />
+          <Route exact path={"/game"} render={() => <Game setGameId={setGameId} gameId={gameId} name1={name1} name2={name2} setName1={setName1} setName2={setName2}/>} />
           <Route path={"/gameover"} render={() => <GameOver name1={name1} name2={name2} gameId={gameId}/>} />
         </Switch>
       </Router>

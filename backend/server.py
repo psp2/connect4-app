@@ -151,10 +151,19 @@ def start_game():
     return output
 
 #Launch special game mode
-@app.route('/special', methods=['PUT'])
-def special_game():
+@app.route('/set_player2', methods=['PUT'])
+def set_player2():
     # TODO: implement when custom game modes are implemented
-    pass
+    id = request.args.get('id')
+    name = request.args.get('name')
+
+    db, board = decode(id)
+    board.players[1] = name
+    result = True
+    output = update(db, id, board, result)
+    insert_leaderboard(name, name)
+    return output
+
 
 @app.route('/state', methods=['GET'])
 def game_state():
@@ -167,6 +176,8 @@ def game_state():
     output["response"] = "Ok"
     output["state"] = board.state
     output['turn'] = board.turn + 1
+    output['p1'] = board.players[0]
+    output['p2'] = board.players[1]
     return output
 
 @app.route('/place_token', methods=['POST'])
