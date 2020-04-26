@@ -30,12 +30,9 @@ function Menus(props) {
   function submitGameSettings(diff, name1, name2, size, gameCode) {
     setDifficulty(diff);
 
-    if(name1 === null) {
-      name1 = "Player"
-    }
-
-    if(name2 === null) {
-      name2 = "AI"
+    if(name1 === null && name2 === null) {
+      name1 = "Player";
+      name2 = "AI";
     }
 
     props.setName1(name1);
@@ -47,6 +44,19 @@ function Menus(props) {
 
     // use gameCode here for online mode
     console.log(gameCode)
+
+    if(gameCode !== null) {
+      props.setGameId(gameCode)
+      const base_url = 'http://127.0.0.1:5000/set_player2?id='
+      const url = base_url.concat(gameCode, "&name=", name1)
+      fetch(url, {method: 'put'})
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+      })
+      setGameRedirect(true);
+      return
+    }
 
     if(diff === null) {
       diff = 6

@@ -58,12 +58,16 @@ function Game(props) {
     .then(response => response.json())
     .then(data => {
       setGameState([data['turn'], data['state']])
+      if(data['p1'] !== 'null') {
+        props.setName1(data['p1'])
+        props.setName2(data['p2'])
+      }
       console.log(data)
     })
   }
 
   return (
-    <div className="Game">
+    <div className="Game" onClick={state}>
       <div className="GameZone">
         <div className="Player1_Zone">
           <PlayerIcon
