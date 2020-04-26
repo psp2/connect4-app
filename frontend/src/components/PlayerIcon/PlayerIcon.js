@@ -7,17 +7,6 @@ function PlayerIcon(props) {
     props.endGame(true);
   }
 
-  function undo() {
-    var base_url = 'http://127.0.0.1:5000/undo?id='
-    var url = base_url.concat(props.gameId)
-    fetch(url, {method: 'post'})
-    .then(response => response.json())
-    .then(data => {
-      props.setGameState([data['turn'], data['state']])
-      console.log(data)
-    })
-  }
-
   function restart() {
     var base_url = 'http://127.0.0.1:5000/restart?id='
     var url = base_url.concat(props.gameId)
@@ -35,10 +24,11 @@ function PlayerIcon(props) {
         <div>Player {props.playerNumber}:</div>
         <div>{props.playerName}</div>
       </div>
-      <div className="PlayerPicture">Insert Picture Here!</div>
+      {props.playerNumber === 1 && (<div className="PlayerPicture1"></div>)}
+      {props.playerNumber === 2 && (<div className="PlayerPicture2"></div>)}
       {props.playerNumber === 1 && (
         <div className="PlayerButtons">
-          <Button className="Player1IconButton" onClick={undo}>UNDO</Button>
+          <Button className="Player1IconButton" onClick={props.undo}>UNDO</Button>
           <Button className="Player1IconButton" onClick={restart}>RESTART</Button>
           <Button onClick={forfeitGame} className="Player1IconButton">
             FORFEIT
@@ -47,7 +37,7 @@ function PlayerIcon(props) {
       )}
       {props.playerNumber === 2 && (
         <div className="PlayerButtons">
-          <Button className="Player2IconButton" onClick={undo}>UNDO</Button>
+          <Button className="Player2IconButton" onClick={props.undo}>UNDO</Button>
           <Button className="Player2IconButton" onClick={restart}>RESTART</Button>
           <Button onClick={forfeitGame} className="Player2IconButton">
             FORFEIT

@@ -7,14 +7,17 @@ import GameOver from "../GameOver/GameOver";
 import Menus from "../Menus/Menus";
 
 function App() {
-  const [gameId, setGameId] = useState("5ea1127db7d696391160dd22")
+  const [gameId, setGameId] = useState("5ea1127db7d696391160dd22");
+  const [name1, setName1] = useState("");
+  const [name2, setName2] = useState("");
+
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path={"/"} render={() => <Menus setGameId={setGameId} gameId={gameId}/>} />
-          <Route exact path={"/game"} render={() => <Game setGameId={setGameId} gameId={gameId}/>} />
-          <Route path={"/gameover"} render={() => <GameOver/>} />
+          <Route exact path={"/"} render={() => <Menus setGameId={setGameId} gameId={gameId} setName1={setName1} setName2={setName2} />} />
+          <Route exact path={"/game"} render={() => <Game setGameId={setGameId} gameId={gameId} name1={name1} name2={name2} />} />
+          <Route path={"/gameover"} render={() => <GameOver name1={name1} name2={name2} />} />
         </Switch>
       </Router>
     </div>

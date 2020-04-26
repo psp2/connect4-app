@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Game.scss";
 import { Redirect } from "react-router-dom";
 import Board from "../../components/Board/Board";
@@ -6,77 +6,19 @@ import PlayerIcon from "../../components/PlayerIcon/PlayerIcon.js";
 import InvalidMove from "../../components/InvalidMove/InvalidMove.js";
 
 function Game(props) {
-  // TEMP; FOR DEMO DISPLAY
-  const temp_6 = [
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-  ];
-  // TEMP; FOR DEMO DISPLAY
-  const temp_7 = [
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-  ];
-  // TEMP; FOR DEMO DISPLAY
-  const temp_8 = [
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-  ];
-
   // Must add API call here
-  const [gameState, setGameState] = useState([1, temp_6]);
+  const [gameState, setGameState] = useState([1, null]);
   // Used to determine if the last move was valid or not
   const [prevPlayer, setPrevPlayer] = useState(1);
   const [lastMoveValid, setLastMoveValid] = useState(true);
   const [endGame, setEndGame] = useState(false);
+  const [endGameRedirect, setEndGameRedirect] = useState(false); 
 
-  // const base_url = 'http://127.0.0.1:5000/start?size='
-  // const url = base_url.concat(6, '&difficulty=', 5, '&p1=', 'Test1', '&p2=', 'Test2')
-  // fetch(url, {method: 'put'})
-  // .then(response => response.json())
-  // .then(data => {
-  //   setGameId(data['id'])
-  //   setGameState([1, data['state']])
-  //   console.log(data)
-  // })
-  // .catch(err => console.error(err))
-
-  if (endGame) {
+  if (endGameRedirect) {
     return <Redirect to="/gameover" />;
   }
 
   function updateGameState(col) {
-    // TODO: Make API Call and set game state accordingly!
-
-    // TEMP; FOR WEEK 1 DEMO ONLY
-    const api_res = [
-      1,
-      [
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 2, 0, 1, 0, 0, 0],
-        [0, 0, 2, 1, 1, 0, 0, 0],
-        [0, 2, 1, 2, 2, 1, 0, 0],
-      ],
-    ];
-    // setGameState(api_res);
     var base_url = 'http://127.0.0.1:5000/place_token?id='
     const url = base_url.concat(props.gameId, '&col=',col)
     fetch(url, {method: "post"})
@@ -96,9 +38,17 @@ function Game(props) {
       }
     })
     .catch(err => console.error(err))
+  }
 
-    // If the returned board is empty, the game is over.
-
+  function undo() {
+    var base_url = 'http://127.0.0.1:5000/undo?id='
+    var url = base_url.concat(props.gameId)
+    fetch(url, {method: 'post'})
+    .then(response => response.json())
+    .then(data => {
+      setGameState([data['turn'], data['state']])
+      console.log(data)
+    })
   }
 
   return (
@@ -107,11 +57,12 @@ function Game(props) {
         <div className="Player1_Zone">
           <PlayerIcon
             playerNumber={1}
-            playerName="Prashant"
+            playerName={props.name1}
             endGame={setEndGame}
             gameId={props.gameId}
             setGameState={setGameState}
             prevPlayer={prevPlayer}
+            undo={undo}
           />
         </div>
         <div>
@@ -120,15 +71,25 @@ function Game(props) {
             gameState={gameState[1]}
             makeMove={updateGameState}
           />
+          {gameState[1] == null && <div className="GameStartbutton" onClick={undo}>
+            START 
+            </div>}
+          {endGame && <div className="GameStartbutton">
+            GAME OVER!
+            <div className="BackButtonGreen" onClick={() => setEndGameRedirect(true)}>
+              Continue
+            </div>
+          </div>}
         </div>
         <div className="Player2_Zone">
           <PlayerIcon
             playerNumber={2}
-            playerName="Vivek"
+            playerName={props.name2}
             endGame={setEndGame}
             gameId={props.gameId}
             setGameState={setGameState}
             prevPlayer={prevPlayer}
+            undo={undo}
           />
         </div>
       </div>

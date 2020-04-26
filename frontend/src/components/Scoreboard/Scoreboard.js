@@ -15,8 +15,19 @@ function Scoreboard(props) {
         </div>
         <vr className="ScoreboardVRLine"></vr>
         <div className="ScoreboardNameColumn">
-          <div className="ScoreboardName">{props.player1Score}</div>
-          <div className="ScoreboardName">{props.player2Score}</div>
+          <div className="ScoreboardCategories">W</div>
+          <div className="ScoreboardName">{props.player1Wins}</div>
+          <div className="ScoreboardName">{props.player2Wins}</div>
+        </div>
+        <div className="ScoreboardNameColumn">
+          <div className="ScoreboardCategories">T</div>
+          <div className="ScoreboardName">{props.player1Ties}</div>
+          <div className="ScoreboardName">{props.player2Ties}</div>
+        </div>
+        <div className="ScoreboardNameColumn">
+          <div className="ScoreboardCategories">L</div>
+          <div className="ScoreboardName">{props.player1Losses}</div>
+          <div className="ScoreboardName">{props.player2Losses}</div>
         </div>
       </div>
     </div>

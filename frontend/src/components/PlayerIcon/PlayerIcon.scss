@@ -17,12 +17,22 @@
   overflow: scroll;
 }
 
-.PlayerPicture {
+.PlayerPicture1 {
   width: 16vw;
   height: 16vw;
   margin: auto;
   border: solid white 1px;
   border-radius: 20px;
+  background-color: yellow;
+}
+
+.PlayerPicture2 {
+  width: 16vw;
+  height: 16vw;
+  margin: auto;
+  border: solid white 1px;
+  border-radius: 20px;
+  background-color: red;
 }
 
 .PlayerButtons {
