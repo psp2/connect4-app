@@ -1,6 +1,6 @@
 # connect4-app
 
-(IN PROGRESS as of 4/12/20)
+(IN PROGRESS as of 4/26/20)
 
 Connect 4 App created by Prashant Pokhriyal and Vivek Sriramineni for CS242 final project. 
 
