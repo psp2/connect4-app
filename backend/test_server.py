@@ -32,7 +32,7 @@ def test_server_running(client):
     assert b'Server is running' in rv.data
 
 def start_game(client):
-    rv = client.put('/start?size=6&difficulty=1&p1=Test1&p2=Test2')
+    rv = client.put('/start?size=6&difficulty=1&p1=Test1&p2=Test2&mode=1')
     json_data = rv.get_json()
     assert json_data['size'] == 6
     assert json_data['response'] == 'Ok'
@@ -126,7 +126,7 @@ def test_quit_leaderboard(client):
     assert leaderboard_get("Test1", lead_data["leaderboard"]) != None
     assert leaderboard_get("Test2", lead_data["leaderboard"]) != None
 
-    path = '/quit?id='+id
+    path = '/quit?id='+id+'&turn=1'
     rv = client.put(path)
     quit_data = rv.get_json()
     assert quit_data['game_status'] == 2
@@ -179,5 +179,16 @@ def test_win_condition(client):
     assert losser["losses"] == 1
     assert winner["wins"] == 1
     assert winner["losses"] == 0
+
+    delete_data(client, id)
+
+def test_ai_moves(client):
+
+    id = start_game(client)
+
+    path = '/ai?id='+id
+    rv = client.post(path)
+    ai_data = rv.get_json()
+    assert ai_data['response'] == True
 
     delete_data(client, id)

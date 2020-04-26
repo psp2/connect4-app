@@ -3,35 +3,46 @@ import { Redirect } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import "./GameOver.scss";
 import Scoreboard from "../../components/Scoreboard/Scoreboard";
+import { defaultProps } from "recompose";
 
-function GameOver() {
-  const [winner, setWinner] = useState(null);
-  const [player1Name, setPlayer1Name] = useState("");
-  const [player2Name, setPlayer2Name] = useState("");
-  const [player1Score, setPlayer1Score] = useState(0);
-  const [player2Score, setPlayer2Score] = useState(0);
+function GameOver(props) {
+  const [player1Wins, setPlayer1Wins] = useState(0);
+  const [player1Losses, setPlayer1Losses] = useState(0);
+  const [player1Ties, setPlayer1Ties] = useState(0);
+  const [player2Wins, setPlayer2Wins] = useState(0);
+  const [player2Losses, setPlayer2Losses] = useState(0);
+  const [player2Ties, setPlayer2Ties] = useState(0);
   const [rematchRedirect, setRematchRedirect] = useState(false);
   const [menuRedirect, setMenuRedirect] = useState(false);
 
   useEffect(() => {
-    // TEMP until API implemented
-    var api_score1 = 3;
-    var api_player1 = "Prashant";
-    var api_score2 = 2;
-    var api_player2 = "Vivek";
-
-    if (api_score2 > api_score1) {
-      setWinner(api_player2);
-      setPlayer1Name(api_player2);
-      setPlayer1Score(api_score2);
-      setPlayer2Name(api_player1);
-      setPlayer2Score(api_score1);
-    } else {
-      setWinner(api_player1);
-      setPlayer1Name(api_player1);
-      setPlayer1Score(api_score1);
-      setPlayer2Name(api_player2);
-      setPlayer2Score(api_score2);
+    if (props.testJson != null) {
+      let data = props.testJson;
+      let i = data.leaderboard.length;
+      let player1 = find_player(props.name1, data.leaderboard);
+      let player2 = find_player(props.name2, data.leaderboard);
+      setPlayer1Wins(player1.wins);
+      setPlayer1Losses(player1.losses);
+      setPlayer1Ties(player1.ties);
+      setPlayer2Wins(player2.wins);
+      setPlayer2Losses(player2.losses);
+      setPlayer2Ties(player2.ties);
+    }
+    else {
+      var url = 'http://127.0.0.1:5000/leaderboard';
+      fetch(url, {method: 'get'})
+      .then(response => response.json())
+      .then(data => {
+        let i = data.leaderboard.length;
+        let player1 = find_player(props.name1, data.leaderboard);
+        let player2 = find_player(props.name2, data.leaderboard);
+        setPlayer1Wins(player1.wins);
+        setPlayer1Losses(player1.losses);
+        setPlayer1Ties(player1.ties);
+        setPlayer2Wins(player2.wins);
+        setPlayer2Losses(player2.losses);
+        setPlayer2Ties(player2.ties);
+      })
     }
   }, []);
 
@@ -39,13 +50,31 @@ function GameOver() {
     setRematchRedirect(true);
   }
 
+  function find_player(name, data) {
+    for (var i = 0; i < data.length; i++) {
+      var object = data[i];
+      console.log(object.name)
+      if (object.name === name) {
+        return object;
+      }
+    }
+    //Name does not exist
+    return {wins: -1, losses: -1, ties: -1};
+  }
+
   function returnToMenu() {
     setMenuRedirect(true);
   }
 
   if (rematchRedirect) {
-    // Will need to add more once API implemented, multiple games enabled
-    // Will also need to wait for other player to "accept" if in multi-player mode
+    var base_url = 'http://127.0.0.1:5000/restart?id='
+    var url = base_url.concat(props.gameId)
+    fetch(url, {method: 'put'})
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+    })
+
     return <Redirect to="/game" />;
   }
 
@@ -55,23 +84,19 @@ function GameOver() {
 
   return (
     <div className="GameOver">
-      {winner && (
-        <div>
-          <div className="Winner">WINNER: </div>
-          <div className="Winner">{winner}!</div>
-        </div>
-      )}
-      {!winner && (
-        <div>
-          <div className="Winner">STALEMATE!</div>
-        </div>
-      )}
+      <div>
+        <div className="PlayAgain">PLAY AGAIN?</div>
+      </div>
       <div className="GameOverRow">
         <Scoreboard
-          player1Name={player1Name}
-          player1Score={player1Score}
-          player2Name={player2Name}
-          player2Score={player2Score}
+          player1Name={props.name1}
+          player1Wins={player1Wins}
+          player1Ties={player1Ties}
+          player1Losses={player1Losses}
+          player2Name={props.name2}
+          player2Wins={player2Wins}
+          player2Ties={player2Ties}
+          player2Losses={player2Losses}
         />
         <div className="GameOverButtonsArea">
           <Button onClick={rematch} className="GameOverButton">
@@ -80,7 +105,7 @@ function GameOver() {
           <Button onClick={returnToMenu} className="GameOverButton">
             MAIN MENU
           </Button>
-          <Button className="GameOverButton">QUIT</Button>
+          <Button className="GameOverButton" onClick={returnToMenu}>QUIT</Button>
         </div>
       </div>
     </div>

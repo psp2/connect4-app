@@ -10,6 +10,7 @@ function GameSettings(props) {
   const [onlineMode, setOnlineMode] = useState(false);
   const [name1, setName1] = useState(null);
   const [name2, setName2] = useState(null);
+  const [gameCode, setGameCode] = useState(null);
 
   function resetSettings() {
     props.resetPlayers(0);
@@ -23,7 +24,7 @@ function GameSettings(props) {
       if (props.numPlayers === 2 && !onlineMode && !name2) {
         return;
       }
-      props.submitSettings(difficulty, name1, name2, boardSize);
+      props.submitSettings(difficulty, name1, name2, boardSize, gameCode);
     }
   }
 
@@ -41,6 +42,10 @@ function GameSettings(props) {
 
   function selectSize(size) {
     setBoardSize(size);
+  }
+
+  function selectGameCode(code) {
+    setGameCode(code);
   }
 
   function createDifficultyIcons(value) {
@@ -134,6 +139,14 @@ function GameSettings(props) {
                   placeholder={"Player 2 Name"}
                   defaultValue={""}
                   onChange={(e) => selectName2(e.target.value)}
+                />
+              )}
+              {onlineMode && (
+                <FormControl
+                  className="nameInput"
+                  placeholder={"Game Code"}
+                  defaultValue={""}
+                  onChange={(e) => selectGameCode(e.target.value)}
                 />
               )}
             </div>

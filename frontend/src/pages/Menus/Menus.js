@@ -8,13 +8,11 @@ import StartMenu from "../../components/StartMenu/StartMenu";
 import GameModes from "../../components/GameModes/GameModes";
 import GameSettings from "../../components/GameSettings/GameSettings";
 
-function Menus() {
+function Menus(props) {
   const [gameRedirect, setGameRedirect] = useState(false);
   const [numPlayers, setNumPlayers] = useState(0);
   const [gameMode, setGameMode] = useState(0);
   const [difficulty, setDifficulty] = useState(null);
-  const [name1, setName1] = useState(null);
-  const [name2, setName2] = useState(null);
   const [boardSize, setBoardSize] = useState(0);
 
   if (gameRedirect) {
@@ -29,20 +27,58 @@ function Menus() {
     setGameMode(mode);
   }
 
-  function submitGameSettings(diff, name1, name2, size) {
+  function submitGameSettings(diff, name1, name2, size, gameCode) {
     setDifficulty(diff);
-    setName1(name1);
-    setName2(name2);
+
+    if(name1 === null && name2 === null) {
+      name1 = "Player";
+      name2 = "AI";
+    }
+
+    props.setName1(name1);
+    props.setName2(name2);
     setBoardSize(size);
-    // Do stuff with API here!
-    // Submit AI diff, name1, name 2, boardSize, gameMode
+
+    // for the API call, use gameMode variable stored in this component (1 = Connect 4, 2 = Don't Connect 4, 3 = Mayhem)
+    // remember name2 is null here if in single player mode
+
+    // use gameCode here for online mode
+    console.log(gameCode)
+
+    if(gameCode !== null) {
+      props.setGameId(gameCode)
+      const base_url = 'http://127.0.0.1:5000/set_player2?id='
+      const url = base_url.concat(gameCode, "&name=", name1)
+      fetch(url, {method: 'put'})
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+      })
+      setGameRedirect(true);
+      return
+    }
+
+    if(diff === null) {
+      diff = 6
+    }
+
+    const base_url = 'http://127.0.0.1:5000/start?size='
+    const url = base_url.concat(size, '&difficulty=', diff, '&p1=', name1, '&p2=', name2, '&mode=', gameMode)
+    fetch(url, {method: 'put'})
+    .then(response => response.json())
+    .then(data => {
+      props.setGameId(data['id'])
+      console.log(data)
+    })
+    .catch(err => console.error(err))
+
     setGameRedirect(true);
   }
 
   function resetGameSettings() {
     setDifficulty(null);
-    setName1(null);
-    setName2(null);
+    props.setName1(null);
+    props.setName2(null);
     setBoardSize(null);
   }
 
@@ -71,4 +107,4 @@ function Menus() {
   );
 }
 
-export default compose(withRouter)(Menus);
+export default Menus;
