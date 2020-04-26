@@ -4,6 +4,13 @@ exports[`GameOver, renders correctly 1`] = `
 <div
   className="GameOver"
 >
+  <div>
+    <div
+      className="PlayAgain"
+    >
+      PLAY AGAIN?
+    </div>
+  </div>
   <div
     className="GameOverRow"
   >
@@ -26,14 +33,10 @@ exports[`GameOver, renders correctly 1`] = `
         >
           <div
             className="ScoreboardName"
-          >
-            
-          </div>
+          />
           <div
             className="ScoreboardName"
-          >
-            
-          </div>
+          />
         </div>
         <vr
           className="ScoreboardVRLine"
@@ -41,6 +44,49 @@ exports[`GameOver, renders correctly 1`] = `
         <div
           className="ScoreboardNameColumn"
         >
+          <div
+            className="ScoreboardCategories"
+          >
+            W
+          </div>
+          <div
+            className="ScoreboardName"
+          >
+            0
+          </div>
+          <div
+            className="ScoreboardName"
+          >
+            0
+          </div>
+        </div>
+        <div
+          className="ScoreboardNameColumn"
+        >
+          <div
+            className="ScoreboardCategories"
+          >
+            T
+          </div>
+          <div
+            className="ScoreboardName"
+          >
+            0
+          </div>
+          <div
+            className="ScoreboardName"
+          >
+            0
+          </div>
+        </div>
+        <div
+          className="ScoreboardNameColumn"
+        >
+          <div
+            className="ScoreboardCategories"
+          >
+            L
+          </div>
           <div
             className="ScoreboardName"
           >

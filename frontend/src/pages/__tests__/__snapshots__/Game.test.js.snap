@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`game page, renders properly 1`] = `
+<div
+  className="Game"
+>
+  <div
+    className="GameZone"
+  >
+    <div
+      className="Player1_Zone"
+    >
+      <div
+        className="PlayerIcon"
+      >
+        <div
+          className="PlayerInfo"
+        >
+          <div>
+            Player 
+            1
+            :
+          </div>
+          <div />
+        </div>
+        <div
+          className="PlayerPicture1"
+        />
+        <div
+          className="PlayerButtons"
+        >
+          <button
+            className="Player1IconButton btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            UNDO
+          </button>
+          <button
+            className="Player1IconButton btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            RESTART
+          </button>
+          <button
+            className="Player1IconButton btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            FORFEIT
+          </button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        className="Board"
+      />
+      <div
+        className="GameStartbutton"
+        onClick={[Function]}
+      >
+        START
+      </div>
+    </div>
+    <div
+      className="Player2_Zone"
+    >
+      <div
+        className="PlayerIcon"
+      >
+        <div
+          className="PlayerInfo"
+        >
+          <div>
+            Player 
+            2
+            :
+          </div>
+          <div />
+        </div>
+        <div
+          className="PlayerPicture2"
+        />
+        <div
+          className="PlayerButtons"
+        >
+          <button
+            className="Player2IconButton btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            UNDO
+          </button>
+          <button
+            className="Player2IconButton btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            RESTART
+          </button>
+          <button
+            className="Player2IconButton btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            FORFEIT
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="CurrentPlayer"
+  >
+    Player Turn: 
+    1
+  </div>
+</div>
+`;
