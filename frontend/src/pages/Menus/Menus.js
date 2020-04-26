@@ -13,8 +13,6 @@ function Menus(props) {
   const [numPlayers, setNumPlayers] = useState(0);
   const [gameMode, setGameMode] = useState(0);
   const [difficulty, setDifficulty] = useState(null);
-  const [name1, setName1] = useState(null);
-  const [name2, setName2] = useState(null);
   const [boardSize, setBoardSize] = useState(0);
 
   if (gameRedirect) {
@@ -29,13 +27,17 @@ function Menus(props) {
     setGameMode(mode);
   }
 
-  function submitGameSettings(diff, name1, name2, size) {
+  function submitGameSettings(diff, name1, name2, size, gameCode) {
     setDifficulty(diff);
-    setName1(name1);
-    setName2(name2);
+    props.setName1(name1);
+    props.setName2(name2);
     setBoardSize(size);
-    // Do stuff with API here!
-    // Submit AI diff, name1, name 2, boardSize, gameMode
+
+    // for the API call, use gameMode variable stored in this component (1 = Connect 4, 2 = Don't Connect 4, 3 = Mayhem)
+    // remember name2 is null here if in single player mode
+
+    // use gameCode here for online mode
+    console.log(gameCode)
 
     if(diff === null) {
       diff = 6
@@ -47,7 +49,6 @@ function Menus(props) {
     .then(response => response.json())
     .then(data => {
       props.setGameId(data['id'])
-      props.setGameState([1, data['state']])
       console.log(data)
     })
     .catch(err => console.error(err))
@@ -57,8 +58,8 @@ function Menus(props) {
 
   function resetGameSettings() {
     setDifficulty(null);
-    setName1(null);
-    setName2(null);
+    props.setName1(null);
+    props.setName2(null);
     setBoardSize(null);
   }
 

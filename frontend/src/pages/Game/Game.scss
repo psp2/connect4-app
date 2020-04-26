@@ -1,3 +1,18 @@
+.GameStartbutton {
+  position: absolute;
+  height: 6vw;
+  width: 20vw;
+  top: 25%;
+  left: 25%;
+  right: 25%;
+  border-radius: 20px;
+  border: 1px solid black;
+  margin: auto;
+  font-size: 2em;
+  background-color: #106eeb;
+  color: white;
+}
+
 .Game {
   height: 100vh;
   width: 100vw;
